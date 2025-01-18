@@ -1,0 +1,160 @@
+{% block content %}
+<style>
+  /* إعداد الألوان الأساسية */
+  body {
+    background-color: #000000; /* أسود للخلفية */
+    color: #FFFFFF; /* أبيض للنص */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /* التصميم الخاص بالفورم */
+  .form-container {
+    width: 100%; /* عرض الفورم 100% */
+    max-width: 500px; /* الحد الأقصى لعرض الفورم */
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.6); /* خلفية داكنة مع شفافية */
+    border-radius: 10px; /* حواف دائرية للفورم */
+  }
+
+  /* تحريك الفورم إلى الجهة اليمنى (تم إزالة الـ float لجعلها تتكيف بشكل أفضل مع الشاشات الصغيرة) */
+  .form-container {
+    margin: 0 auto;
+  }
+
+  .right-section1 {
+    position: absolute;
+    top: 80%; /* تحديد الموقع العمودي */
+    right: 35%; /* تحديد الموقع الأفقي */
+    transform: translateY(-50%); /* توسيط النص عموديًا */
+    text-align: right; /* محاذاة النص لليمين */
+  }
+
+  .right-section1 a {
+    color: #39ff14; /* لون الروابط */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .right-section1 a:hover {
+    color: #FFFFFF; /* تغيير لون الرابط عند التمرير */
+    text-decoration: underline;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.1); /* رمادي شفاف */
+    color: rgb(255, 255, 255); /* أبيض للنص داخل الحقول */
+    border: none; /* إزالة الإطار */
+    border-bottom: 2px solid rgba(57, 255, 20, 0.5); /* خط سفلي شفاف */
+    border-radius: 0; /* إزالة الزوايا */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-bottom-color: #39ff14; /* أخضر نيون */
+    box-shadow: 0 8px 15px rgba(57, 255, 20, 0.3); /* ظل أخضر خفيف */
+    outline: none; /* إزالة التأثير الافتراضي */
+  }
+
+  .form-group {
+    background-color: rgba(255, 255, 255, 0.05); /* رمادي غامق شفاف */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px; /* زوايا ناعمة */
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-group:hover {
+    box-shadow: 0 8px 25px rgba(145, 145, 145, 0.83); /* تأثير النيون عند تمرير الماوس */
+    transform: scale(1.02); /* تكبير بسيط */
+  }
+
+  legend {
+    color: rgb(255, 255, 255); /* أبيض */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .btn-outline-info {
+    color: rgb(255, 255, 255);
+    border: 1px solid #39ff14;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-outline-info:hover {
+    background-color: #39ff14;
+    color: #000000;
+  }
+
+  /* Media Queries لتحسين التكيف مع الشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .form-container {
+      width: 90%; /* زيادة العرض إلى 90% للشاشات الصغيرة */
+      padding: 20px;
+    }
+
+    .right-section1 {
+      position: relative; /* لجعلها تظهر أسفل الفورم في الشاشات الصغيرة */
+      top: 0;
+      right: 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+</style>
+
+<div class="form-container">
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Login</legend>
+
+      <div class="form-group">
+        {{ form.email.label(class='form-control-label') }}
+        {% if form.email.errors %}
+          {{ form.email(class='form-control', placeholder="Enter your email") }}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class='form-control', placeholder="Enter your email") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.password.label(class='form-control-label') }}
+        {% if form.password.errors %}
+          {{ form.password(class='form-control', placeholder="Enter your password") }}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(class='form-control', placeholder="Enter your password") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.submit(class='btn btn-outline-info') }}
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class="right-section1">
+  <p>Don't have an account?</p>
+  <a href="{{ url_for('register') }}">Create one</a>
+</div>
+
+{% endblock content %}

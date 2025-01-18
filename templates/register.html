@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+  /* إعداد الألوان الأساسية */
+  body {
+    background-color: #000000; /* أسود للخلفية */
+    color: #FFFFFF; /* أبيض للنص */
+  }
+
+  /* تصميم الحقول */
+  .form-container {
+    width: 50%; /* جعل العرض 50% من الصفحة */
+    float: left; /* محاذاة النموذج إلى اليسار */
+  }
+
+  .right-section1 {
+    position: absolute;
+    top: 50%; /* تحديد الموقع العمودي */
+    right: 10%; /* تحديد الموقع الأفقي */
+    transform: translateY(-50%); /* توسيط النص عموديًا */
+    text-align: right; /* محاذاة النص لليمين */
+  }
+
+
+  .right-section1 a {
+    color: #39ff14; /* لون الروابط */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .right-section a:hover {
+    color: #FFFFFF; /* تغيير لون الرابط عند التمرير */
+    text-decoration: underline;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.1); /* رمادي شفاف */
+    color: rgb(255, 255, 255); /* أبيض للنص داخل الحقول */
+    border: none; /* إزالة الإطار */
+    border-bottom: 2px solid rgba(57, 255, 20, 0.5); /* خط سفلي شفاف */
+    border-radius: 0; /* إزالة الزوايا */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-bottom-color: #39ff14; /* أخضر نيون */
+    box-shadow: 0 8px 15px rgba(57, 255, 20, 0.3); /* ظل أخضر خفيف */
+    outline: none; /* إزالة التأثير الافتراضي */
+  }
+
+  .form-group {
+    background-color: rgba(255, 255, 255, 0.05); /* رمادي غامق شفاف */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px; /* زوايا ناعمة */
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-group:hover {
+    box-shadow: 0 8px 25px rgba(145, 145, 145, 0.83); /* تأثير النيون عند تمرير الماوس */
+    transform: scale(1.02); /* تكبير بسيط */
+  }
+
+  legend {
+    color: rgb(255, 255, 255); /* أبيض */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .btn-outline-info {
+    color: rgb(255, 255, 255);
+    border: 1px solid #39ff14;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-outline-info:hover {
+    background-color: #39ff14;
+    color: #000000;
+  }
+
+
+
+
+</style>
+
+<div class="form-container">
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Create an Account</legend>
+
+      <div class="form-group">
+        {{ form.fname.label(class='form-control-label') }}
+        {% if form.fname.errors %}
+          {{ form.fname(class='form-control', placeholder="Enter your first name") }}
+          <div class="invalid-feedback">
+            {% for error in form.fname.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.fname(class='form-control', placeholder="Enter your first name") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.lname.label(class='form-control-label') }}
+        {% if form.lname.errors %}
+          {{ form.lname(class='form-control', placeholder="Enter your last name") }}
+          <div class="invalid-feedback">
+            {% for error in form.lname.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.lname(class='form-control', placeholder="Enter your last name") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.username.label(class='form-control-label') }}
+        {% if form.username.errors %}
+          {{ form.username(class='form-control', placeholder="Enter your username") }}
+          <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.username(class='form-control', placeholder="Enter your username") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.email.label(class='form-control-label') }}
+        {% if form.email.errors %}
+          {{ form.email(class='form-control', placeholder="Enter your email address") }}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class='form-control', placeholder="Enter your email address") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.password.label(class='form-control-label') }}
+        {% if form.password.errors %}
+          {{ form.password(class='form-control', placeholder="Enter your password") }}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(class='form-control', placeholder="Enter your password") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.confirm_password.label(class='form-control-label') }}
+        {% if form.confirm_password.errors %}
+          {{ form.confirm_password(class='form-control', placeholder="Confirm your password") }}
+          <div class="invalid-feedback">
+            {% for error in form.confirm_password.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.confirm_password(class='form-control', placeholder="Confirm your password") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.submit(class='btn btn-outline-info') }}
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class="right-section1">
+  <p>Already have an Account?</p>
+  <a href="{{ url_for('login') }}">Sign in</a>
+</div>
+{% endblock content %}

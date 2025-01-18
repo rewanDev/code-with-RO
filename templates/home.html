@@ -1,0 +1,271 @@
+{% extends "layout.html"%}  
+{% block content%}
+
+<style>
+    /* ألوان خيال علمي */
+    body {
+        background-color: #000; /* خلفية سوداء */
+        color: #fff; /* نص أبيض */
+    }
+    h1 span {
+        color: #39ff14; /* أخضر نيون */
+    }
+    .bg-dark {
+        background-color: #101010 !important;
+    }
+    .bg-primary {
+        background: linear-gradient(45deg, #39ff14, #101010);
+    }
+    .btn-dark {
+        background-color: #101010 !important;
+        border: 1px solid #39ff14;
+    }
+    .btn-dark:hover {
+        background-color: #39ff14 !important;
+        color: #101010;
+    }
+    .text-warning {
+        color: #39ff14 !important;
+    }
+
+    /* تأثيرات أنيميشن */
+    .fade-in {
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .fade-zoom {
+        animation: fadeZoom 2s ease-in-out;
+    }
+
+    .fade-in-left {
+        animation: fadeInLeft 2s ease-in-out;
+    }
+
+    .rotate {
+        animation: rotate 2s linear infinite;
+    }
+
+    .fade-in-down {
+        animation: fadeInDown 2s ease-in-out;
+    }
+
+    /* تغيير الحركة لآخر دروس */
+    .scrolling-bar {
+        animation: scrollingBar 20s linear infinite; /* حركة أفقية بطيئة */
+        display: flex;
+        overflow: hidden;
+    }
+
+    .lesson-container {
+        display: flex;
+        gap: 20px; /* للتباعد بين المحتويات */
+        min-width: 100%;
+    }
+
+    /* تعريف الحركات */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeZoom {
+        from {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* الحركة الأفقية */
+    @keyframes scrollingBar {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
+
+    /* إضافات أخرى */
+    .card:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 0 20px #39ff14;
+    }
+
+    /* تنسيق الكونتينرات داخل آخر الدروس */
+    .lesson-container .col-sm-12 {
+        flex: 0 0 33.33%;
+
+        /* تأثير الشريط الذي يظهر من اليسار لليمين */
+
+            
+    }
+
+    /* تأثير الشريط الذي يظهر من اليسار لليمين */
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    /* تطبيق الأنميشن على قسم Contact Me */
+    .contact-section {
+        animation: slideInLeft 1.5s ease-out;
+    }
+       
+</style>
+
+<!-- قسم Learn to Code -->
+<section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start fade-zoom">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1 class="mb-10"> Learn To Code with <span class="text-warning"> DEV rewan</span></h1>
+                <p class="lead my-4">
+                    I focus on teaching programming in an intuitive and easy to follow way. All you need is
+                    dedication!
+                </p>
+                <a class="btn btn-danger btn-lg border"
+                    href="" target="_blank">
+                    <i class="bi bi-youtube m-3"></i>Subscribe
+                </a>
+            </div>
+            <img class="img-fluid w-50 d-none d-sm-block rotate" src="{{url_for('static', filename='showcase.svg')}}" alt="">
+        </div>
+    </div>
+</section>
+<section class="bg-primary text-light p-5 fade-in-down contact-section">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center">
+            <h1 class="mb-3 text-center">contact me HERE</h1>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler border" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#socialbtn">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="socialbtn">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="btn btn-dark ms-5 button_width" href="https://github.com/omar-ghoneim"
+                                target="_blank">
+                                <i class="bi-github" role="img"></i>
+                                GitHub
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a type="button" class="btn btn-dark ms-5 button_width"
+                                href="https://www.instagram.com/pythonic_88" target="_blank">
+                                <i class="bi bi-instagram"></i>
+                                Instagram
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-dark ms-5 button_width" href="https://www.linkedin.com/in/rewan-moussa-a5b178335/"
+                                target="_blank">
+                                <i class="bi bi-Linkedin"></i>
+                                Linkedin
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- قسم Lessons & Courses -->
+<section class="bg-ligh">
+    <div class="container p-5 fade-in">
+        <h1 class="text-center text-secondary" id='learn'>Courses</h1>
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3 d-flex align-items-stretch">
+                <a href="{{url_for('course', course_title=course.title)}}" class="text-decoration-none">
+                    <div class="card bg-dark text-light h-100 fade-in-down">
+                        <div class="card-body text-center">
+                            <img src="{{url_for('static', filename='course_icons/'+course.icon)}}" alt=""
+                                class="card-img w-25">
+                            <h4 class="card-title mb-3">
+                                {{course.title}}
+                            </h4>
+                            <p class="card-text">{{course.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- قسم Latest Lessons -->
+<section class="bg-dark">
+    <div class="container p-5 fade-in-down">
+        <div class="row mb-5">
+            <div class="col">
+                <h1 class="text-uppercase text-center text-light">latest lessons</h1>
+            </div>
+        </div>
+        <div class="scrolling-bar">
+            <div class="lesson-container">
+                {% for lesson in lessons %}
+                <div class="col-sm-12 col-md-6 col-lg-4 pb-5 d-flex align-items-stretch">
+                    <div class="card lesson">
+                        <img src="{{url_for('static', filename='lesson_thumbnails/'+lesson.thumbnail)}}" class="card-img">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a class="text-decoration-none text-dark"
+                                    href="{{url_for('lesson', lesson_slug=lesson.slug, course=lesson.course_name.title)}}">{{lesson.title}}</a>
+                            </h5>
+                            <p class="card-text mb-0">In:
+                                <a class="text-decoration-none" href="#">{{lesson.course_name.title}}</a>
+                            </p>
+                            <span><img class="article-img rounded-circle"
+                                    src="{{url_for('static', filename='user_pics/'+lesson.author.image_file)}}" alt="">By:
+                                <a href="#" class="link">{{lesson.author.username}}</a></span>
+                            <span class="text-muted">On: {{lesson.date_posted.strftime('%Y-%m-%d')}}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content%}

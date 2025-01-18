@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- إضافة تنسيقات CSS لتغيير الخلفية وتأثير الظل الأخضر عند التمرير -->
+<style>
+  /* إضافة خلفية سوداء للصفحة */
+  body {
+    background-color: #000000;
+  }
+
+  /* تخصيص الكارد لإضافة الظل الأخضر عند التمرير */
+  .card {
+    transition: box-shadow 0.3s ease-in-out; /* تأثير الانتقال للظل */
+  }
+
+  .card:hover {
+    box-shadow: 0 0 15px 5px rgba(40, 167, 69, 1); /* ظل أخضر نيون عند التمرير */
+  }
+
+  /* تخصيص لون النص داخل الكارد ليكون أبيض */
+  .card-title, .card-text {
+    color: #ffffff; /* النص باللون الأبيض */
+  }
+
+  /* تخصيص الروابط لتكون باللون الافتراضي دون تأثير عند التمرير */
+  .card a {
+    text-decoration: none;
+  }
+
+  /* تخصيص الخلفية في قسم الـ cards */
+  .bg-ligh {
+    background-color: #000000; /* خلفية سوداء للقسم */
+  }
+</style>
+
+<section class="bg-ligh">
+    <div class="container p-5">
+        <h3 class="text-center text-secondary" id='learn'>Courses</h3>
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3 d-flex align-items-stretch">
+                <a href="{{url_for('course', course_title=course.title)}}" class="text-decoration-none">
+                    <div class="card bg-dark text-light h-100">
+                        <div class="card-body text-center">
+                            <img src="{{url_for('static', filename='course_icons/'+course.icon)}}" alt=""
+                                class="card-img w-25">
+                            <h4 class="card-title mb-3">
+                                {{course.title}}
+                            </h4>
+                            <p class="card-text">{{course.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
